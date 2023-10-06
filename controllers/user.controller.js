@@ -11,10 +11,10 @@ exports.findAll = async (req, res) => {
     res.status(200).json({ status: true, data: result });
     console.log("Success in reading all users");
     logger.info("Log info success in reading all users");
-    logger.log("Logger success in reading all users");
+    // logger.log("Logger success in reading all users");
   } catch (err) {
     res.status(400).json({ status: false, data: err });
-    logger.error("Problem in reading all users")
+    logger.error("Problem in reading all users");
     console.log("Problem in reading all users");
   }
 }
@@ -56,7 +56,7 @@ exports.findOne = async (req, res) => {
     const result = await User.findOne({ username: username })
     res.status(200).json({ status: true, data: result });
     logger.info("Log info success in reading user");
-    logger.log("Logger success in reading user");
+    // logger.log("Logger success in reading user");
     console.log("Success in reading user")
   } catch (err) {
     res.status(400).json({ status: false, data: err })

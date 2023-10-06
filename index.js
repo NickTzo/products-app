@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
-const port = 3000;
+
 
 const cors = require('cors'); //για να επιτρεπει να μποροει καποιος να παρει δεδομενα απο παντου χωρις συγκεκριμενο localhost  βηματα:2/1
 
@@ -20,10 +20,11 @@ const swaggerDocument = require('./swagger'); //Το αρχειο ονομαζε
 // Το αποκατω χρειαζεται για να χρησιμοποιουμε το env αρχειο και αυτο το χρησιοποιουμε πιο κατω
 require('dotenv').config();
 // εδω απο κατω χρησιμοποιουμε το env αρχειο
-mongoose.connect(process.env.MONGODB_URI).then(
-  () => (console.log("Connection with the database established")),
-  err => (console.log("Failed to connect to MongoDB", err))
-);
+mongoose.connect(process.env.MONGODB_URI)
+  .then(
+    () => { console.log("Connection with the database established") },
+    err => { console.log("Failed to connect to MongoDB", err) }
+  );
 
 app.use(cors({
   origin: '*'           //      2/2 Επιτρεπει απο παντου να δεχετε κλησεις η εφαρμογη για την βαση
@@ -49,7 +50,4 @@ app.use('/api/users-products', user_products)
 app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument.options))
 
 
-
-app.listen(port, () => {
-  console.log(`Linstening on port ${port}.`)
-});
+module.exports = app;

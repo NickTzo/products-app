@@ -22,7 +22,8 @@ exports.findOne = async (req, res) => {
   const product = req.params.product
   console.log("Find product with product name", product);
   try {
-    const results = await res.status(200).json({ status: true, data: results });
+    const results = await Product.findOne();
+    res.status(200).json({ status: true, data: results });
     console.log("Success in reading product");
     logger.info("Success in reading product");
     logger.log("Success in reading product");
